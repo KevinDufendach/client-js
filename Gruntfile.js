@@ -26,6 +26,6 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('browserify', 'Browserify to create window.FHIR', ['shell:browserify']);
+  grunt.registerTask('browserify', 'Browserify to create window.FHIR', ['shell:browserify']);git
   grunt.registerTask('default', ['browserify', 'uglify:minifiedLib']);
 };
