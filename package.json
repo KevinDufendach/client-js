@@ -1,29 +1,75 @@
 {
-  "name": "fhir-js-client",
-  "version": "0.0.1",
+  "name": "fhirclient",
+  "version": "2.1.0",
   "description": "JavaScript client for Fast Healthcare Interoperability Resources",
-  "author": "Josh Mandel <joshua.mandel@childrens.harvard.edu>",
+  "author": "SMART Health IT <support@smarthealthit.org> (https://smarthealthit.org/)",
+  "contributors": [
+    "Josh Mandel <joshua.mandel@childrens.harvard.edu>",
+    "Vladimir Ignatov <vlad.ignatov@gmail.com>"
+  ],
+  "keywords": [
+    "SMART",
+    "FHIR",
+    "Client"
+  ],
+  "license": "Apache-2.0",
+  "main": "src/adapters/NodeAdapter.js",
+  "browser": "src/browser.js",
   "dependencies": {
-    "btoa": "*",
-    "browserify": "^5.0",
-    "jquery": "*",
-    "jsonwebtoken": "*",
-    "varify": "^0.1.1"
+    "@babel/runtime": "^7.4.5",
+    "@types/debug": "^4.1.4",
+    "@types/whatwg-fetch": "0.0.33",
+    "core-js": "^3.1.3",
+    "debug": "^4.1.1",
+    "node-fetch-npm": "^2.0.2",
+    "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
-    "test": "mocha -c -R spec"
+    "test": "lab -P test --ignore fetch,Response,Headers,Request --threshold 90 --verbose --coverage-exclude lib -r console -r html -o stdout -o test/coverage.html",
+    "pack:prod": "webpack --config webpack.config.js --mode production",
+    "pack:dev": "webpack --config webpack.config.js --mode development",
+    "pack:prod:pure": "npm run pack:prod -- --pure",
+    "pack:dev:pure": "npm run pack:dev -- --pure",
+    "pack": "npm run pack:dev && npm run pack:prod && npm run pack:dev:pure && npm run pack:prod:pure",
+    "build": "npm run build:module && npm run pack",
+    "build:dev": "npm run pack:dev -- --watch",
+    "cover": "lab -P test --ignore fetch,Response,Headers,Request --threshold 0 --coverage-exclude lib -r lcov | coveralls",
+    "build:module": "babel -d dist/lib src"
   },
   "devDependencies": {
-    "varify": "^0.1.1",
-    "grunt": "~0.4.1",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-shell": "~0.3.1",
-    "jsdom": "*",
-    "mocha": "*",
-    "should": "*",
-    "sinon": "*"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@hapi/code": "^5.3.1",
+    "@hapi/lab": "^19.0.1",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "cors": "^2.8.5",
+    "coveralls": "^3.0.4",
+    "eslint": "^5.16.0",
+    "express": "^4.17.0",
+    "fhir.js": "0.0.20",
+    "jsdom": "^15.1.1",
+    "local-web-server": "^2.6.1",
+    "typescript": "^3.5.2",
+    "webpack": "^4.32.2",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-cli": "^3.3.2"
   },
-  "engine": "node >= 0.6.0"
+  "engine": "node >= 10",
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 firefox versions",
+    "last 2 Edge versions",
+    "ie 10-11"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smart-on-fhir/client-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smart-on-fhir/client-js/issues"
+  },
+  "homepage": "http://docs.smarthealthit.org/client-js/"
 }

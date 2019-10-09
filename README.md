@@ -1,33 +1,66 @@
-SMART on FHIR JavaScript Client Library
-=======================================
+SMART on FHIR JavaScript Library
+================================
 
-## Building
+This is a JavaScript library for connecting SMART apps to Fhir servers.
+It works both in browsers (IE10+) and on the server (NodeJS).
 
-To build the library, you will need Grunt and NPM. Once you
-have all the dependencies in place, you can build the library
-with the `grunt` command.
+## Installation
 
-Here are the exact steps to build the client library
-on Ubuntu 14.04:
-
-```
-sudo apt-get update
-sudo apt-get -y install git npm
-sudo ln -s "$(which nodejs)" /usr/bin/node
-git clone https://github.com/smart-on-fhir/client-js
-cd client-js
-npm install
-sudo npm install -g grunt-cli
-grunt
+Install from npm:
+```sh
+npm i fhirclient
 ```
 
-If all goes well, the client library will be available in the
-`dist` directory in multiple variants as follows:
+<br/>
 
-* `fhir-client.js` - complete client library with jQuery and fhir.js included (no external dependencies)
-* `fhir-client-jquery.js` - client library using jQuery, jQuery and fhir.js not included
-* `fhir-client-angularjs.js` - client library using AngularJS, AngularJS and fhir.js not included
+## Documentation (new)
+The documentation for the upcoming release is available at [http://docs.smarthealthit.org/client-js/](http://docs.smarthealthit.org/client-js/).
 
-## Usage
+Check out [what's new in v2](http://docs.smarthealthit.org/client-js/v2.html)!
 
-For usage examples and further documentation, please visit http://docs.smarthealthit.org/clients/javascript/
+<br/>
+
+## Documentation (old) 
+The documentation for the older (current) version is at [http://docs.smarthealthit.org/clients/javascript/](http://docs.smarthealthit.org/clients/javascript/).
+
+<br/>
+
+## Contributing and Development
+
+### NPM Scripts
+
+After you `cd` into to the project folder and run `npm i`, you can use npm scripts to handle any project-related task:
+
+```sh
+# run tests
+npm test
+
+# Build everything
+npm run build
+
+# Build all bundles
+npm run pack
+
+# Only build the minified bundle for production
+npm run pack:prod
+
+# Only build the pure (no polyfills included) minified bundle for production
+npm run pack:prod:pure
+
+# Only build non-minified bundle for development
+npm run pack:dev
+
+# Only build the pure (no polyfills included) bundle for development
+npm run pack:dev:pure
+
+# Only build non-minified bundle for development and rebuild on change
+npm run build:dev
+
+# Build the CommonJS modules (for Node and bundlers)
+npm run build:module
+```
+
+## License
+Apache 2.0
+
+

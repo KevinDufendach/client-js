@@ -7,3 +7,7 @@
 .#*
 *.swp
 node_modules
+.vscode
+test.html
+launch.html
+trash
